@@ -28,12 +28,7 @@ def internalflowhistory_all():
             print(row)
             print(e)
         else:
-            curve = pd.DataFrame()
-            curve['date_af'] = df[df.date_key>='20200101'].date_key.values
-            curve['flow_af'] = df[df.date_key>='20200101'].internal_flow.values
-            curve['date_bf'] = df.iloc[:len(curve)].date_key.values
-            curve['flow_bf'] = df.iloc[:len(curve)].internal_flow.values
-            curve['province'] = row.province_name
-            curve['city'] = row.city_name
-            curves.append(curve[['province', 'city', 'date_bf', 'flow_bf', 'date_af', 'flow_af']])
+            df['province'] = row.province_name
+            df['city'] = row.city_name
+            curves.append(df)
     return pd.concat(curves, ignore_index=True)
